@@ -5,15 +5,11 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import firebase from 'react-native-firebase';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
+
+import { colors } from '../styles/Styles';
 
 Mapbox.setAccessToken('pk.eyJ1IjoiZmNvY2hpbXZlcmEiLCJhIjoiY2pnNHhpc3RkMWZlcDMzeGYzemI5dXhxcCJ9.UZ_9JEKLgZGM-89Rek1MFA');
 
@@ -25,6 +21,10 @@ const instructions = Platform.select({
 });
 
 export default class Maps extends React.Component  {
+  static navigatorStyle = {
+    navBarHidden: true,
+  };
+
 
   login = () => {
     firebase.auth().signInAnonymously()
@@ -54,16 +54,13 @@ export default class Maps extends React.Component  {
     return (
       <View style={styles.container}>
         <Mapbox.MapView
-            styleURL={Mapbox.StyleURL.Street}
+            styleURL={'mapbox://styles/fcochimvera/cjgjmepw9002h2sppbncbunal'}
             zoomLevel={15}
             centerCoordinate={[11.256, 43.770]}
             style={styles.container}
             showUserLocation={true}>
             {this.renderAnnotations()}
         </Mapbox.MapView>
-        <View>
-            <Text> Si esta cargando</Text>
-        </View>
       </View>
     );
   }
@@ -88,14 +85,16 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: colors.orangeblur,
     borderRadius: 15,
+    borderWidth: 0.5,
+    borderColor: colors.orange
   },
   annotationFill: {
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: 'orange',
+    backgroundColor: colors.orange,
     transform: [{ scale: 0.6 }],
   }
 });

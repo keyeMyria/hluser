@@ -5,6 +5,9 @@ import {inject, observer} from "mobx-react/native";
 
 @inject('store') @observer
 export default class Aplications extends React.Component {
+  static navigatorStyle = {
+    largeTitle: true,
+  }
   constructor(props) {
     super(props);
   }
