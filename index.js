@@ -5,12 +5,15 @@ import Aplications from './screens/Aplications';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 
+import { Provider } from 'mobx-react';
+import AppStore from './store/AppStore';
+
 // register all screens of the app (including internal ones)
 export function registerScreens() {
-  Navigation.registerComponent('hl.Maps', () => Maps);
-  Navigation.registerComponent('hl.Aplications', () => Aplications);
-  Navigation.registerComponent('hl.Home', () => Home);
-  Navigation.registerComponent('hl.Profile', () => Profile);
+  Navigation.registerComponent('hl.Maps', () => Maps, AppStore, Provider);
+  Navigation.registerComponent('hl.Aplications', () => Aplications, AppStore, Provider);
+  Navigation.registerComponent('hl.Home', () => Home, AppStore, Provider);
+  Navigation.registerComponent('hl.Profile', () => Profile, AppStore, Provider);
 }
 
 registerScreens(); // this is where you register all of your app's screens
