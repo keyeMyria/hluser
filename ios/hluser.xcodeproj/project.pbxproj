@@ -16,6 +16,7 @@
 		0B55C8A9209DAB1F0039E824 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B55C882209DAB1F0039E824 /* Mapbox.framework */; };
 		0B55C8AA209DAB1F0039E824 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0B55C882209DAB1F0039E824 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0B55C8B2209DAB470039E824 /* libRCTMGL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B55C8B1209DAB3A0039E824 /* libRCTMGL.a */; };
+		0B55C8FD209DB51D0039E824 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B55C8FB209DB5090039E824 /* libReactNativeNavigation.a */; };
 		0BF97E90209D9591001C04E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BF97E69209D9591001C04E1 /* GoogleService-Info.plist */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -98,6 +99,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = C4D1443D1F4E16F600396F26;
 			remoteInfo = RCTMGL;
+		};
+		0B55C8FA209DB5090039E824 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B55C8D0209DB5090039E824 /* ReactNativeNavigation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
+			remoteInfo = ReactNativeNavigation;
 		};
 		0BF97E5A209D92B6001C04E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -365,6 +373,7 @@
 		00E356F21AD99517003FC87E /* hluserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hluserTests.m; sourceTree = "<group>"; };
 		0B55C882209DAB1F0039E824 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = "../node_modules/@mapbox/react-native-mapbox-gl/ios/Mapbox.framework"; sourceTree = "<group>"; };
 		0B55C8AC209DAB3A0039E824 /* RCTMGL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTMGL.xcodeproj; path = "../node_modules/@mapbox/react-native-mapbox-gl/ios/RCTMGL.xcodeproj"; sourceTree = "<group>"; };
+		0B55C8D0209DB5090039E824 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		0BF97E69209D9591001C04E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -413,6 +422,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B55C8FD209DB51D0039E824 /* libReactNativeNavigation.a in Frameworks */,
 				0B55C8B2209DAB470039E824 /* libRCTMGL.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -543,6 +553,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0B55C8D1209DB5090039E824 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0B55C8FB209DB5090039E824 /* libReactNativeNavigation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0BF97E31209D92B5001C04E1 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +668,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0B55C8D0209DB5090039E824 /* ReactNativeNavigation.xcodeproj */,
 				0B55C8AC209DAB3A0039E824 /* RCTMGL.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -895,6 +914,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 0B55C8D1209DB5090039E824 /* Products */;
+					ProjectRef = 0B55C8D0209DB5090039E824 /* ReactNativeNavigation.xcodeproj */;
+				},
+				{
 					ProductGroup = 0BF97E57209D92B6001C04E1 /* Products */;
 					ProjectRef = 50AA96772D7C4DA79D4718EB /* RNFirebase.xcodeproj */;
 				},
@@ -950,6 +973,13 @@
 			fileType = archive.ar;
 			path = libRCTMGL.a;
 			remoteRef = 0B55C8B0209DAB3A0039E824 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0B55C8FB209DB5090039E824 /* libReactNativeNavigation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeNavigation.a;
+			remoteRef = 0B55C8FA209DB5090039E824 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		0BF97E5B209D92B6001C04E1 /* libRNFirebase.a */ = {
@@ -1595,6 +1625,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = hluser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1627,6 +1658,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-navigation/ios/**",
 				);
 				INFOPLIST_FILE = hluser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
