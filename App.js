@@ -9,8 +9,10 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity,
 } from 'react-native';
+import firebase from 'react-native-firebase';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,12 +23,25 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+
+
+  login = () => {
+    firebase.auth().signInAnonymously()
+  .then((user) => {
+    console.log(user.isAnonymous);
+  });
+  }
+
+
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
+        <TouchableOpacity onPress={() => this.login()}>
+          <Text style={styles.welcome}>
+            Welcome to React Native!
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.instructions}>
           To get started, edit App.js
         </Text>
