@@ -28,29 +28,29 @@ Navigation.startTabBasedApp({
     {
       label: 'Buscar',
       screen: 'hl.Maps', // this is a registered name for a screen
-      icon: require('./assets/map.png'),
-      selectedIcon: require('./assets/map.png'), // iOS only
+      icon: require('./assets/mapline.png'),
+      selectedIcon: require('./assets/mapline.png'), // iOS only
       //title: 'Screen One'
     },
     {
       label: 'Solicitados',
       screen: 'hl.Aplications',
-      icon: require('./assets/bookmark.png'),
-      selectedIcon: require('./assets/bookmark.png'), // iOS only
+      icon: require('./assets/propertysIcon.png'),
+      selectedIcon: require('./assets/propertysIcon.png'), // iOS only
       title: 'Solicitados'
     },
     {
       label: 'Casa',
       screen: 'hl.Home', // this is a registered name for a screen
-      icon: require('./assets/bed.png'),
-      selectedIcon: require('./assets/bed.png'), // iOS only
+      icon: require('./assets/homeIcon.png'),
+      selectedIcon: require('./assets/homeIcon.png'), // iOS only
       title: 'Mi casa'
     },
     {
       label: 'Perfil',
       screen: 'hl.Profile',
-      icon: require('./assets/male.png'),
-      selectedIcon: require('./assets/male.png'), // iOS only
+      icon: require('./assets/userIcon.png'),
+      selectedIcon: require('./assets/userIcon.png'), // iOS only
       //title: 'Screen Two'
     }
   ],

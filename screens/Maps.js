@@ -1,15 +1,10 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import firebase from 'react-native-firebase';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
 
-import { colors } from '../styles/Styles';
+import { colors, fonts } from '../styles/Styles';
 
 Mapbox.setAccessToken('pk.eyJ1IjoiZmNvY2hpbXZlcmEiLCJhIjoiY2pnNHhpc3RkMWZlcDMzeGYzemI5dXhxcCJ9.UZ_9JEKLgZGM-89Rek1MFA');
 
@@ -24,6 +19,15 @@ export default class Maps extends React.Component  {
   static navigatorStyle = {
     navBarHidden: true,
   };
+
+  constructor(props){
+    super(props);
+    this.state = {
+      latitude: Number (null),
+      longitude: Number(null),
+      error: null,
+    };
+  }
 
 
   login = () => {
@@ -40,24 +44,43 @@ export default class Maps extends React.Component  {
         id='pointAnnotation'
         coordinate={[11.254, 43.772]}>
 
-        <View style={styles.annotationContainer}>
-          <View style={styles.annotationFill} />
+        <View style={s.annotationContainer}>
+          <View style={s.annotationFill} />
         </View>
         <Mapbox.Callout title='Look! An annotation!' />
       </Mapbox.PointAnnotation>
     )
   }
 
+  componentDidMount(){
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.setState({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            error: null,
+          });
+        },
+        (error) => this.setState({ error: error.message }),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      );
+  }
+
 
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={s.container}>
+        <View style={s.selector}>
+            <TouchableOpacity>
+              <Text style={s.selectortext}> Mérida </Text>
+            </TouchableOpacity>
+        </View>
         <Mapbox.MapView
             styleURL={'mapbox://styles/fcochimvera/cjgjmepw9002h2sppbncbunal'}
-            zoomLevel={15}
-            centerCoordinate={[11.256, 43.770]}
-            style={styles.container}
+            zoomLevel={12}
+            centerCoordinate={[this.state.longitude, this.state.latitude]}
+            style={s.map}
             showUserLocation={true}>
             {this.renderAnnotations()}
         </Mapbox.MapView>
@@ -66,19 +89,28 @@ export default class Maps extends React.Component  {
   }
 }
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  selector: {
+    marginTop: 15,
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: 10
+  },
+  selectortext: {
+    fontFamily: fonts.hlfont,
+    fontSize: 18,
+    fontWeight: '600'
+  },
+  map: {
+    flex: 8
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
   annotationContainer: {
     width: 30,

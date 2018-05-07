@@ -6,3 +6,7 @@ export const colors = {
   whitegray: '#DDDDDD',
   white: '#FFF',
 }
+
+export const fonts = {
+  hlfont: 'System'
+}
