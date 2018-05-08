@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import firebase from 'react-native-firebase';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
+import {inject, observer} from "mobx-react/native";
+
 
 import { colors, fonts } from '../styles/Styles';
 
@@ -15,6 +17,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+@inject('store') @observer
 export default class Maps extends React.Component  {
   static navigatorStyle = {
     navBarHidden: true,
@@ -28,6 +31,13 @@ export default class Maps extends React.Component  {
       error: null,
     };
   }
+
+
+ showDetails= () => {
+   this.props.navigator.push({
+     screen: 'hl.HouseDetails',
+   });
+ }
 
 
   login = () => {
@@ -66,23 +76,34 @@ export default class Maps extends React.Component  {
       );
   }
 
-
+//'mapbox://styles/fcochimvera/cjgjmepw9002h2sppbncbunal'
 
   render() {
+    const annotations = this.props.store.merida.map((post) =>
+                              <Mapbox.PointAnnotation
+                                    key={post.key}
+                                    id={post.id}
+                                    coordinate={post.coordinate}
+                                    selected={false}
+                                    snippet="Departament"
+                                    onSelected={() => this.showDetails(post)}>
+                                    <View style={s.annotationContainer}>
+                                          <View style={s.annotationFill} />
+                                          </View>
+                                    <Mapbox.Callout title='Look! An annotation!' />
+                            </Mapbox.PointAnnotation> );
     return (
       <View style={s.container}>
-        <View style={s.selector}>
-            <TouchableOpacity>
-              <Text style={s.selectortext}> Mérida </Text>
-            </TouchableOpacity>
-        </View>
+              <View style={s.selector}>
+                  <Text style={s.selectortext}> Méridaaaa </Text>
+            </View>
         <Mapbox.MapView
-            styleURL={'mapbox://styles/fcochimvera/cjgjmepw9002h2sppbncbunal'}
+            styleURL={Mapbox.StyleURL.Street}
             zoomLevel={12}
             centerCoordinate={[this.state.longitude, this.state.latitude]}
             style={s.map}
             showUserLocation={true}>
-            {this.renderAnnotations()}
+            {annotations}
         </Mapbox.MapView>
       </View>
     );

@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import {inject, observer} from "mobx-react/native";
+
 import { colors, fonts } from '../styles/Styles';
 
-export default class Home extends React.Component {
-  static navigatorStyle= {
+@inject('store') @observer
+export default class Verify extends React.Component {
+  static navigatorStyle = {
     largeTitle: true,
     navBarNoBorder: true,
-    //navBarButtonFontSize: 13, // Change font size nav bar buttons (eg. the back button) (remembered across pushes)
-    //navBarButtonFontWeight: '400',
   }
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   render(){
     return(
       <View style={s.container}>
             <View style={s.containermessage}>
-              <Text style={s.nohousetext}> No has rentado casa aún </Text>
+              <Text style={s.nohousetext}> No has solicitado rentar casa aún </Text>
               <Text style={s.nohousesubtext}> para comenzar busca nuestras casas disponibles en la sección "Buscar" </Text>
             </View>
       </View>

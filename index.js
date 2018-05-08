@@ -7,8 +7,10 @@ import Maps from './screens/Maps';
 import Aplications from './screens/Aplications';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
+import Verify from './screens/Verify';
+import HouseDetails from './screens/HouseDetails';
 
-import { colors } from './styles/Styles';
+import { colors, fonts } from './styles/Styles';
 
 
 
@@ -18,6 +20,8 @@ export function registerScreens() {
   Navigation.registerComponent('hl.Aplications', () => Aplications, AppStore, Provider);
   Navigation.registerComponent('hl.Home', () => Home, AppStore, Provider);
   Navigation.registerComponent('hl.Profile', () => Profile, AppStore, Provider);
+  Navigation.registerComponent('hl.Verify', () => Verify, AppStore, Provider);
+  Navigation.registerComponent('hl.HouseDetails', () => HouseDetails, AppStore, Provider);
 }
 
 registerScreens(); // this is where you register all of your app's screens
