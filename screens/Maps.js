@@ -33,34 +33,21 @@ export default class Maps extends React.Component  {
   }
 
 
- showDetails= () => {
-   this.props.navigator.push({
-     screen: 'hl.HouseDetails',
-   });
- }
+  showDetails = (house) => {
+    const { name } = house;
+    this.props.navigator.push({
+      screen: 'hl.HouseDetails',
+      passProps: { name },
+    });
+  }
 
-
-  login = () => {
+login = () => {
     firebase.auth().signInAnonymously()
   .then((user) => {
     console.log(user.isAnonymous);
   });
   }
 
-  renderAnnotations () {
-    return (
-      <Mapbox.PointAnnotation
-        key='pointAnnotation'
-        id='pointAnnotation'
-        coordinate={[11.254, 43.772]}>
-
-        <View style={s.annotationContainer}>
-          <View style={s.annotationFill} />
-        </View>
-        <Mapbox.Callout title='Look! An annotation!' />
-      </Mapbox.PointAnnotation>
-    )
-  }
 
   componentDidMount(){
       navigator.geolocation.getCurrentPosition(
@@ -78,18 +65,20 @@ export default class Maps extends React.Component  {
 
 //'mapbox://styles/fcochimvera/cjgjmepw9002h2sppbncbunal'
 
+
+
   render() {
-    const annotations = this.props.store.merida.map((post) =>
+    const annotations = this.props.store.merida.map((house) =>
                               <Mapbox.PointAnnotation
-                                    key={post.key}
-                                    id={post.id}
-                                    coordinate={post.coordinate}
-                                    selected={false}
-                                    snippet="Departament"
-                                    onSelected={() => this.showDetails(post)}>
-                                    <View style={s.annotationContainer}>
-                                          <View style={s.annotationFill} />
-                                          </View>
+                                    key={house.key}
+                                    id={house.id}
+                                    coordinate={[house.long, house.lat]}
+                                    selected={false}>
+                                    <TouchableOpacity onPress={() => this.showDetails(house)}>
+                                      <View style={s.annotationContainer}>
+                                            <View style={s.annotationFill} />
+                                      </View>
+                                    </TouchableOpacity>
                                     <Mapbox.Callout title='Look! An annotation!' />
                             </Mapbox.PointAnnotation> );
     return (
@@ -98,7 +87,7 @@ export default class Maps extends React.Component  {
                   <Text style={s.selectortext}> Méridaaaa </Text>
             </View>
         <Mapbox.MapView
-            styleURL={Mapbox.StyleURL.Street}
+            styleURL={'mapbox://styles/fcochimvera/cjgy4zj7e00032tr2ubussa26'}
             zoomLevel={12}
             centerCoordinate={[this.state.longitude, this.state.latitude]}
             style={s.map}
@@ -109,6 +98,8 @@ export default class Maps extends React.Component  {
     );
   }
 }
+
+
 
 const s = StyleSheet.create({
   container: {
