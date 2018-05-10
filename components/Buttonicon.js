@@ -11,7 +11,7 @@ export default class Buttonicon extends Component {
   render(){
     const { title, onPress, color, textcolor } = this.props;
     return(
-      <TouchableOpacity onPress={() => this.onPress()}>
+      <TouchableOpacity onPress={onPress}>
         <View style={[s.container, {backgroundColor:  color}]}>
             <Text style={[s.title, {color: textcolor}]}> {title} </Text>
         </View>
@@ -25,7 +25,7 @@ const s = StyleSheet.create({
     height: 55,
     borderRadius: 5,
     backgroundColor:  'black',
-    margin: 20,
+    margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },

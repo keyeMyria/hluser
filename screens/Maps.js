@@ -4,6 +4,7 @@ import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native
 import firebase from 'react-native-firebase';
 import Mapbox from '@mapbox/react-native-mapbox-gl';
 import {inject, observer} from "mobx-react/native";
+import { Navigation } from 'react-native-navigation';
 
 
 import { colors, fonts } from '../styles/Styles';
@@ -33,6 +34,7 @@ export default class Maps extends React.Component  {
   }
 
 
+
   showDetails = (house) => {
     const { name } = house;
     this.props.navigator.push({
@@ -41,13 +43,13 @@ export default class Maps extends React.Component  {
     });
   }
 
-login = () => {
-    firebase.auth().signInAnonymously()
-  .then((user) => {
-    console.log(user.isAnonymous);
-  });
+  Login = () => {
+    this.props.navigator.showModal({
+        screen: 'hl.Login', // unique ID registered with Navigation.registerScreen
+        title: 'Modal', // title of the screen as appears in the nav bar (optional)
+        animationType: 'none' // 'none' / 'slide-up' , appear animation for the modal (optional, default 'slide-up')
+      });
   }
-
 
   componentDidMount(){
       navigator.geolocation.getCurrentPosition(
@@ -67,6 +69,8 @@ login = () => {
 
 
 
+
+
   render() {
     const annotations = this.props.store.merida.map((house) =>
                               <Mapbox.PointAnnotation
@@ -81,7 +85,9 @@ login = () => {
                                     </TouchableOpacity>
                                     <Mapbox.Callout title='Look! An annotation!' />
                             </Mapbox.PointAnnotation> );
-    return (
+        if(this.props.store.logged === false){
+              this.Login();
+      } return (
       <View style={s.container}>
               <View style={s.selector}>
                   <Text style={s.selectortext}> Méridaaaa </Text>
